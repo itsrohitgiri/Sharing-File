@@ -7,12 +7,14 @@ import path from "path";
 import fs from "fs";
 
 const app = express();
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 // Middlewares
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(cors({
+  origin: process.env.FRONTEND_URL || '*', // Restrict CORS to frontend URL (you can replace '*' with your frontend's URL on Vercel)
+  methods: ['GET', 'POST'],
+}));
 
 // Automatically create 'uploads/' directory
 const uploadDirectory = path.join(__dirname, "uploads");
@@ -130,7 +132,9 @@ app.post("/upload", upload.single("file"), (req: Request, res: Response) => {
     expirationTimeout: timeout,
   };
 
-  const link = `http://localhost:${PORT}/uploads/${file.filename}`;
+const baseUrl = process.env.RENDER_EXTERNAL_URL;
+const link = `${baseUrl}/uploads/${file.filename}`;
+
   res.json({
     message: "File uploaded successfully!",
     expirationCode,
@@ -162,6 +166,4 @@ app.get("/retrieve/:code", (req: Request, res: Response) => {
 app.use("/uploads", express.static(uploadDirectory));
 
 // Start server
-app.listen(PORT, () => {
-  console.log(`Backend running on http://localhost:${PORT}`);
-});
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
