@@ -1,0 +1,113 @@
+/* App.css */
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background-color: #1a1a2e; /* Dark background */
+  color: #f5f5f5; /* Light text */
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+}
+
+.App {
+  text-align: center;
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #222831; /* Slightly lighter dark panel */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7); /* Panel shadow */
+  width: 90%;
+  max-width: 500px;
+}
+
+/* Button styles */
+button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background: #00909e; /* Vibrant blue-green */
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out, transform 0.2s;
+}
+
+button:hover {
+  background: #00adb5; /* Slightly brighter blue-green on hover */
+  transform: scale(1.05); /* Button "pop" effect */
+}
+
+button:active {
+  transform: scale(0.95); /* Slight depression effect when clicked */
+}
+
+button:disabled {
+  cursor: not-allowed;
+  background: #3a3a3a;
+  color: #6f6f6f;
+}
+
+/* Card-like panels for later/instant sharing */
+.card {
+  background-color: #393e46; /* Dark card background */
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+  color: #eeeeee;
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+  width: 100%;
+  max-width: 400px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6);
+}
+
+/* Input fields */
+input,
+select {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  background: #222831;
+  color: #eee;
+}
+
+/* Links or hyper-text options */
+a {
+  text-decoration: none;
+  color: #00adb5;
+  transition: color 0.2s ease-in-out;
+}
+
+a:hover {
+  color: #65f4f9;
+}
+
+h1, h2, h3 {
+  color: #eeeeee;
+}
+
+/* Responsiveness */
+@media (max-width: 600px) {
+  .App {
+    width: 95%;
+    padding: 15px;
+  }
+
+  button {
+    padding: 8px 16px;
+    font-size: 0.9rem;
+  }
+}
