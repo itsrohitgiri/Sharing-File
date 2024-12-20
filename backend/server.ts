@@ -132,7 +132,7 @@ app.post("/upload", upload.single("file"), (req: Request, res: Response) => {
     expirationTimeout: timeout,
   };
 
-const baseUrl = process.env.REACT_APP_BACKEND_URL;
+const baseUrl = process.env.RENDER_EXTERNAL_URL;
 const link = `${baseUrl}/uploads/${file.filename}`;
 
   res.json({
