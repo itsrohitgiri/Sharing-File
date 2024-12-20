@@ -44,7 +44,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onGoBack }) => {
       formData.append("file", file);
       formData.append("expirationTime", String(expirationTime)); // Include expiration time
 
-      const response = await axios.post("${BACKEND_URL}/upload", formData);
+      const response = await axios.post("${REACT_APP_BACKEND_URL}/upload", formData);
       setLink(response.data.link);
       setUploadCode(response.data.expirationCode);
     } catch {
