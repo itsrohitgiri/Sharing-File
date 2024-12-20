@@ -132,9 +132,7 @@ app.post("/upload", upload.single("file"), (req: Request, res: Response) => {
     expirationTimeout: timeout,
   };
 
-// Generate the file link dynamically
-const baseUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${PORT}`;
-const link = `${baseUrl}/uploads/${file.filename}`;
+const link = `${PORT}/uploads/${file.filename}`;
 
   res.json({
     message: "File uploaded successfully!",
