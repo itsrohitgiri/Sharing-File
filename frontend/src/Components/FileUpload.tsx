@@ -20,6 +20,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onGoBack }) => {
   const [fileData, setFileData] = useState<Blob | null>(null);
   const [fileName, setFileName] = useState("");
   const [retrieveStatus, setRetrieveStatus] = useState("");
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
   /** Handle File Upload **/
   const handleUpload = async () => {
@@ -43,7 +44,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onGoBack }) => {
       formData.append("file", file);
       formData.append("expirationTime", String(expirationTime)); // Include expiration time
 
-      const response = await axios.post("http://localhost:5000/upload", formData);
+      const response = await axios.post("${BACKEND_URL}/upload", formData);
       setLink(response.data.link);
       setUploadCode(response.data.expirationCode);
     } catch {
@@ -64,7 +65,7 @@ const FileUpload: React.FC<FileUploadProps> = ({ onGoBack }) => {
     setRetrieveStatus("");
 
     try {
-      const response = await axios.get(`http://localhost:5000/retrieve/${retrieveCode}`, {
+      const response = await axios.get(`${BACKEND_URL}/retrieve/${retrieveCode}`, {
         responseType: "blob",
       });
 
