@@ -10,9 +10,9 @@ const app = express();
 const PORT = process.env.PORT;
 
 // Middlewares
-app.use(express.json());
+const FRONTEND_URL = "https://sharing-files.vercel.app/"; // Update this with your actual frontend URL
 app.use(cors({
-  origin: process.env.FRONTEND_URL || '*', // Restrict CORS to frontend URL (you can replace '*' with your frontend's URL on Vercel)
+  origin: FRONTEND_URL,
   methods: ['GET', 'POST'],
 }));
 
