@@ -7,14 +7,15 @@ import path from "path";
 import fs from "fs";
 
 const app = express();
-const PORT = process.env.PORT;
+const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000";
+const PORT = process.env.PORT || 3000;
 
-// Middlewares
-const FRONTEND_URL = "https://sharing-files.vercel.app/"; // Update this with your actual frontend URL
 app.use(cors({
   origin: FRONTEND_URL,
-  methods: ['GET', 'POST'],
+  methods: ["GET", "POST"],
 }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 // Automatically create 'uploads/' directory
 const uploadDirectory = path.join(__dirname, "uploads");
